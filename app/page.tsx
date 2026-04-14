@@ -111,7 +111,90 @@ export default function Home() {
           <p className="text-white/20 text-xs mt-5 tracking-wide">Trusted by founders and growth-stage businesses</p>
         </div>
       </section>
+{/* About / Builder */}
+<section className="px-8 py-20 max-w-6xl mx-auto">
+  <div
+    className="relative rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden"
+    style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}
+    ref={(el) => {
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(el);
+    }}
+  >
+    {/* Subtle purple ambient glow */}
+    <div
+      aria-hidden
+      className="pointer-events-none absolute top-0 right-0 w-[400px] h-[300px] -z-0"
+      style={{ background: "radial-gradient(ellipse at top right, rgba(168,85,247,0.10) 0%, transparent 70%)" }}
+    />
 
+    <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-0">
+
+      {/* Left — Text */}
+      <div className="p-10 md:p-14 flex flex-col justify-center">
+        <p className="text-purple-500 text-xs tracking-widest uppercase mb-4 font-medium">The Builder</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-5 text-white leading-tight">
+          Built by<br />
+          <span
+            style={{
+              background: "linear-gradient(135deg, #a855f7 0%, #c084fc 60%, #e879f9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Shubham Chohan
+          </span>
+        </h2>
+        <p className="text-white/40 text-sm leading-relaxed font-light max-w-sm">
+          Designer and developer obsessed with the intersection of aesthetics and conversion. Every pixel has a purpose — and that purpose is growth.
+        </p>
+        <div className="mt-8 flex items-center gap-4">
+          <div className="w-8 h-px bg-purple-500/40" />
+          <span className="text-white/20 text-xs tracking-widest uppercase">Founder, Nyx Labs</span>
+        </div>
+      </div>
+
+      {/* Right — Card */}
+      <div className="p-10 md:p-14 flex items-center justify-center border-t md:border-t-0 md:border-l border-white/5">
+        <div className="w-full max-w-xs space-y-4">
+          {[
+            { label: "Design", value: "Conversion-first UI", symbol: "✦" },
+            { label: "Stack", value: "Next.js · Tailwind · TypeScript", symbol: "◈" },
+            { label: "Focus", value: "Speed, SEO & Revenue", symbol: "◎" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="flex items-start gap-4 group"
+            >
+              <div
+                className="mt-0.5 text-purple-400/70 text-sm group-hover:text-purple-400 transition-colors duration-200"
+                style={{ textShadow: "0 0 8px rgba(168,85,247,0.5)" }}
+              >
+                {item.symbol}
+              </div>
+              <div>
+                <p className="text-white/20 text-xs tracking-widest uppercase mb-0.5">{item.label}</p>
+                <p className="text-white/70 text-sm font-medium">{item.value}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
       {/* Portfolio */}
       <section id="work" className="px-8 py-20 max-w-6xl mx-auto">
         <div className="mb-12">
